@@ -1,0 +1,17 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Форма по занесению станка в базу{% endblock %}
+
+{% block content %}
+    <div class="features">
+        <h1>Форма по занесению станка в базу</h1>
+        <form method = "post">
+            {% csrf_token %}  <!--Без этой херни не заработает отправка в БД-->
+            {{ form.m_name }}<br>
+            {{ form.machine_type }}<br>
+            {{ form.status }}<br>
+            {{ form.full_text }}<br>
+            <button class="btn btn-success" type="submit">Добавить станок</button>
+        </form>
+    </div>
+{% endblock %}

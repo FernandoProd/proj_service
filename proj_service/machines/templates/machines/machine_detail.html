@@ -1,0 +1,15 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Вы выбрали станок:{% endblock %}
+
+{% block content %}
+    <div class="features">
+        <h1>{{ machine.m_name }}</h1>
+        <p>{{ machine.machine_type }}</p>
+        <p>{{ machine.status }}</p>
+        <p>{{ machine.full_text }}</p>
+        <a href="{% url 'machine-delete' machine.id %}" class="btn btn-danger">Удалить</a>
+        <a href="{% url 'machine-update' machine.id %}" class="btn btn-info">Редактировать</a>
+    </div>
+{% include 'main/test.html' %}
+{% endblock %}

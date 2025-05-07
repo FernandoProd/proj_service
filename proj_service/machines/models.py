@@ -1,0 +1,20 @@
+from django.db import models
+
+class Machine(models.Model):
+    m_name = models.CharField('Название станка', max_length=40)
+    machine_type = models.CharField('Тип станка', max_length=100)
+    status = models.CharField('Статус', max_length=20)
+    full_text = models.TextField('Описание')
+
+    def __str__(self):
+        return self.m_name
+
+    def get_absolute_url(self):
+        return f'/machines/{self.id}'
+
+    class Meta:    #Этот класс существуюет для переименования модели в админке
+        verbose_name = 'Станок'
+        verbose_name_plural = 'Станки'
+
+
+#m_name machine_type status full_text

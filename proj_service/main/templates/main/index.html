@@ -1,0 +1,36 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <div class="features">
+        <h1>{{ title }}</h1>
+        <p>Тут что-то написано, но пока нет смысла это читать...</p>
+        <buttom class="btn btn-outline-danger">На страницу: ПРО НАС</buttom><br>
+        <table class="table table-striped">
+            <thead>
+                    {% if machines %}
+                        {% for el in machines %}
+                            <tr>
+                                <th scope="col">{{ el }}</th>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+            </thead>
+            <tbody>
+                <tr>
+                    {% if machines %}
+                        {% for el in machines %}
+                            <th scope="row">{{el.id}}</th>
+                            <td>{{ el.m_name }}</td>
+                            <td>{{ el.machine_type }}</td>
+                            <td>{{ el.status }}</td>
+                            <td>{{ el.full_text }}</td>
+                        {% endfor %}
+                    {% endif %}
+                </tr>
+            </tbody>
+        </table>
+        {{ obj.axis }}
+    </div>
+{% endblock %}
