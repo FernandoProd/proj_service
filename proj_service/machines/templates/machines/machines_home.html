@@ -6,7 +6,7 @@
     <div class="features">
         <h1>ТУТ БУДУТ ГОВОРИТЬ О СТАНКАХ</h1>
         <p>Мы являемся одной из крупнейших компаний по переработке куриного помета в РФ и странах СНГ!</p>
-        <button class="btn btn-danger">На страницу: ГЛАВНАЯ</button>
+        <a href="{% url 'home' %}" ><button class="btn btn-danger">На страницу: ГЛАВНАЯ</button></a>
         {% if machines %}
             {% for el in machines %}
                 <div class="alert alert-warning">

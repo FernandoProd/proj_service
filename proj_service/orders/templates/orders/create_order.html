@@ -1,0 +1,27 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Создание заявки{% endblock %}
+
+{% block content %}
+    <h2>Создать заявку</h2>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <div>
+            <label for="order_number">Номер заявки:</label>
+            <input type="text" name="order_number" id="order_number" required>
+        </div>
+
+        <h3>Детали:</h3>
+        {{ formset.management_form }}
+
+        {% for form in formset %}
+            <div class="form-row">
+                {{ form.as_p }}
+            </div>
+        {% endfor %}
+
+        <button type="submit">Сохранить заявку</button>
+    </form>
+{% endblock %}

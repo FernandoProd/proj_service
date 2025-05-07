@@ -1,0 +1,36 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Список заявок{% endblock %}
+
+{% block content %}
+  <div class="table-wrapper">
+    <h2>Список заявок</h2>
+    <a href="{% url 'create_order' %}"><li><button class="btn btn-info"><i class="fas fa-plus-circle"></i>Добавить запись</button></li></a>
+    <table class="order-table">
+      <thead>
+        <tr>
+          <th>Номер заявки</th>
+          <th>Клиент</th>
+          <th>Приоритет</th>
+          <th>Дата создания</th>
+          <th>Статус</th>
+          <th>Действие</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for order in orders %}
+          <tr>
+            <td>{{ order.order_number }}</td>
+            <td>{{ order.customer_name }}</td>
+            <td>{{ order.priority }}</td>
+            <td>{{ order.created_at|date:"d.m.Y H:i" }}</td>
+            <td>{{ order.status }}</td>
+            <td>
+              <a class="btn-view" href="{% url 'order_detail' order.id %}">Просмотр</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
