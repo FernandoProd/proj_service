@@ -1,0 +1,89 @@
+{% extends 'main/layout.html' %}
+
+{% block content %}
+<style>
+    table {
+        width: 80%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        font-family: Arial, sans-serif;
+    }
+    th, td {
+        padding: 12px 15px;
+        border: 1px solid #ccc;
+        text-align: left;
+    }
+    th {
+        background-color: #f4f4f4;
+        font-weight: bold;
+    }
+    tr:nth-child(even) {
+        background-color: #fafafa;
+    }
+    tr:hover {
+        background-color: #f1f1f1;
+    }
+    h1 {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #333;
+        margin-bottom: 20px;
+    }
+</style>
+
+<h1>План производства</h1>
+
+<form method="post" action="{% url 'run_auto_schedule' %}">
+    {% csrf_token %}
+    <button type="submit" style="
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        margin-bottom: 20px;
+    ">
+        Запустить автоматическое планирование
+    </button>
+</form>
+
+<table>
+    <tr>
+        <th>Станок</th>
+        <th>Деталь</th>
+        <th>Заявка</th>
+        <th>Начало</th>
+        <th>Окончание</th>
+        <th>Статус</th>
+        <th>Действия</th>
+    </tr>
+    {% for plan in plans %}
+    <tr>
+        <td>{{ plan.machine.m_name }}</td>  <!-- Изменено здесь: plan.machine.m_name вместо plan.machine.name -->
+        <td>{{ plan.order_detail.detail.name }}</td>
+        <td>{{ plan.order_detail.order.order_number }}</td>
+        <td>{{ plan.start_time|date:"d.m.Y H:i" }}</td>
+        <td>{{ plan.end_time|date:"d.m.Y H:i" }}</td>
+        <td>{{ plan.is_complete|yesno:"Готово,В работе" }}</td>
+        <td>
+            {% if not plan.is_complete %}
+                <form method="POST" action="{% url 'mark_schedule_complete' plan.id %}">
+                    {% csrf_token %}
+                    <button type="submit" style="
+                        background-color: #FF9800;
+                        color: white;
+                        padding: 5px 10px;
+                        border: none;
+                        cursor: pointer;
+                        font-size: 14px;
+                    ">
+                        Отметить как в процессе
+                    </button>
+                </form>
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
