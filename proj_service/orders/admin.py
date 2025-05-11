@@ -10,7 +10,7 @@ class OrderDetailInline(admin.TabularInline):  # Можно также испо�
 # Админ для Order — с Inline
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('id', 'customer', 'created_at', 'priority', 'status', 'deadline')
+    list_display = ('order_number', 'customer', 'created_at', 'priority', 'status', 'deadline')
     search_fields = ('customer',)
     inlines = [OrderDetailInline]  # <-- Вот это главное!
 

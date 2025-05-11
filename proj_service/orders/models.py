@@ -32,7 +32,7 @@ class Order(models.Model):
     status = models.CharField('Статус', max_length=100)
 
     def __str__(self):
-        return f"Заявка №{self.id} от {self.customer} (до {self.deadline})"
+        return f"Заявка №{self.order_number} от {self.customer} (до {self.deadline})"
 
     class Meta:    #Этот класс существуюет для переименования модели в админке
         verbose_name = 'Заявка'
@@ -52,7 +52,7 @@ class OrderDetail(models.Model):
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
 
     def __str__(self):
-        return f"{self.detail.name} x{self.quantity} для заявки #{self.order.id}"
+        return f"{self.detail.number} - {self.detail.name} x{self.quantity} для заявки #{self.order.order_number}"
 
     class Meta:
         unique_together = ('order', 'detail')
