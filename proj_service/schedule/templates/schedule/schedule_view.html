@@ -3,18 +3,16 @@
 {% block title %}План производства{% endblock %}
 
 {% block content %}
-<div class="container mt-5 text-white">
+<div class="container mt-5 text-white" style="display: flex; justify-content: center; flex-direction: column; width: 90%;">
     <h1 class="text-center mb-4">План производства</h1>
 
-    <!-- Кнопка для обновления расписания -->
-    <div class="d-flex justify-content-center mb-4">
+    <div class="d-flex justify-content-center mb-4" style="margin-left: -160px;">
         <form method="post" action="{% url 'refresh_schedules' %}">
             {% csrf_token %}
             <button type="submit" class="btn btn-warning btn-lg">Обновить планы</button>
         </form>
     </div>
 
-    <!-- Календарь и кнопки -->
     <div class="d-flex align-items-center mb-4 gap-3">
         <input type="date" id="datePicker" class="form-control w-auto">
         <button id="todayButton" class="btn btn-outline-info">Задачи на сегодня</button>
@@ -30,75 +28,83 @@
     {% endif %}
 
     {% for day, machines in grouped_schedule.items %}
-        <div class="schedule-day" data-date="{{ day|date:'Y-m-d' }}">
-            <h2 class="text-center text-info mt-4">{{ day|date:"d.m.Y" }}</h2>
+        <div class="schedule-day" data-date="{{ day }}">
+            <h2 class="text-center mt-4" style="color: #ffb503;">{{ day }}</h2>
 
             {% for machine_name, schedules in machines.items %}
                 <h4 class="mt-4">Станок: <span class="text-warning">{{ machine_name }}</span></h4>
 
-                <div class="table-responsive">
-                    <table class="table table-bordered table-dark table-hover align-middle text-center mt-3">
-                        <thead class="table-light text-dark">
-                            <tr>
-                                <th>Станок</th>
-                                <th>Деталь (№)</th>
-                                <th>Заявка</th>
-                                <th>План. начало</th>
-                                <th>Факт. начало</th>
-                                <th>План. окончание</th>
-                                <th>Факт. окончание</th>
-                                <th>Статус</th>
-                                <th>Действия</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for schedule in schedules %}
+                {% if schedules %}
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-dark table-hover align-middle text-center mt-3" style="width: 100%; table-layout: auto;">
+                            <thead class="table-light text-dark">
                                 <tr>
-                                    <td>{{ schedule.machine.m_name }}</td>
-                                    <td>{{ schedule.order_detail.detail.number }}</td>
-                                    <td>
-                                        {% if schedule.order_detail.order %}
-                                            {{ schedule.order_detail.order.order_number }}
-                                        {% else %}
-                                            —
-                                        {% endif %}
-                                    </td>
-                                    <td>{{ schedule.start_time|date:"H:i d.m.Y" }}</td>
-                                    <td>
-                                        {% if schedule.actual_start_time %}
-                                            {{ schedule.actual_start_time|date:"H:i d.m.Y" }}
-                                        {% else %}
-                                            —
-                                        {% endif %}
-                                    </td>
-                                    <td>{{ schedule.end_time|date:"H:i d.m.Y" }}</td>
-                                    <td>
-                                        {% if schedule.actual_end_time %}
-                                            {{ schedule.actual_end_time|date:"H:i d.m.Y" }}
-                                        {% else %}
-                                            —
-                                        {% endif %}
-                                    </td>
-                                    <td>{{ schedule.status }}</td>
-                                    <td>
-                                        <form method="post" action="{% url 'mark_schedule_status' schedule.id 'in_progress' %}" style="display:inline;">
-                                            {% csrf_token %}
-                                            <button type="submit" class="btn btn-sm btn-primary">В работе</button>
-                                        </form>
-                                        <form method="post" action="{% url 'mark_schedule_status' schedule.id 'waiting' %}" style="display:inline;">
-                                            {% csrf_token %}
-                                            <button type="submit" class="btn btn-sm btn-warning">Ожидание</button>
-                                        </form>
-                                        <form method="post" action="{% url 'mark_schedule_status' schedule.id 'done' %}" style="display:inline;">
-                                            {% csrf_token %}
-                                            <button type="submit" class="btn btn-sm btn-success">Готово</button>
-                                        </form>
-                                    </td>
+                                    <th>Станок</th>
+                                    <th>Деталь (№)</th>
+                                    <th>Заявка</th>
+                                    <th>План. начало</th>
+                                    <th>Факт. начало</th>
+                                    <th>План. окончание</th>
+                                    <th>Факт. окончание</th>
+                                    <th>Статус</th>
+                                    <th>Действия</th>
                                 </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
+                            </thead>
+                            <tbody>
+                                {% for schedule in schedules %}
+                                    <tr>
+                                        <td>{{ schedule.machine.m_name }}</td>
+                                        <td>{{ schedule.order_detail.detail.number }}</td>
+                                        <td>
+                                            {% if schedule.order_detail.order %}
+                                                {{ schedule.order_detail.order.order_number }}
+                                            {% else %}
+                                                —
+                                            {% endif %}
+                                        </td>
+                                        <td>{{ schedule.start_time|date:"H:i d.m.Y" }}</td>
+                                        <td>
+                                            {% if schedule.actual_start_time %}
+                                                {{ schedule.actual_start_time|date:"H:i d.m.Y" }}
+                                            {% else %}
+                                                —
+                                            {% endif %}
+                                        </td>
+                                        <td>{{ schedule.end_time|date:"H:i d.m.Y" }}</td>
+                                        <td>
+                                            {% if schedule.actual_end_time %}
+                                                {{ schedule.actual_end_time|date:"H:i d.m.Y" }}
+                                            {% else %}
+                                                —
+                                            {% endif %}
+                                        </td>
+                                        <td>{{ schedule.status }}</td>
+                                        <td>
+                                            <div style="display: flex; gap: 10px; justify-content: center; flex-direction: column; align-items: center;">
+                                                <div style="display: flex; gap: 10px; width: 100%;">
+                                                    <form method="post" action="{% url 'mark_schedule_status' schedule.id 'in_progress' %}" style="margin: 0; width: 48%;">
+                                                        {% csrf_token %}
+                                                        <button type="submit" class="btn btn-sm btn-primary" style="width: 100%;">В работе</button>
+                                                    </form>
+                                                    <form method="post" action="{% url 'mark_schedule_status' schedule.id 'waiting' %}" style="margin: 0; width: 48%;">
+                                                        {% csrf_token %}
+                                                        <button type="submit" class="btn btn-sm btn-warning" style="width: 100%;">Ожидание</button>
+                                                    </form>
+                                                </div>
+                                                <form method="post" action="{% url 'mark_schedule_status' schedule.id 'done' %}" style="margin: 0; width: 100%;">
+                                                    {% csrf_token %}
+                                                    <button type="submit" class="btn btn-sm btn-success" style="width: 100%;">Готово</button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <p class="text-warning">Нет задач для {{ machine_name }}</p>
+                {% endif %}
             {% endfor %}
         </div>
     {% empty %}
@@ -106,34 +112,50 @@
     {% endfor %}
 </div>
 
-<!-- JS -->
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const datePicker = document.getElementById('datePicker');
         const todayButton = document.getElementById('todayButton');
         const resetButton = document.getElementById('resetButton');
-        const allSections = document.querySelectorAll('.schedule-day');
+        const allSections = document.querySelectorAll('.schedule-day'); // секции по дням
 
+        // Функция для преобразования даты в формат DD.MM.YYYY
+        function formatDate(dateStr) {
+            const date = new Date(dateStr);
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = String(date.getMonth() + 1).padStart(2, '0'); // Месяц начинается с 0
+            const year = date.getFullYear();
+            return `${day}.${month}.${year}`;
+        }
+
+        // Показать только задачи на выбранный день
         function showOnlyDate(dateStr) {
             allSections.forEach(section => {
+                // Скрыть или показать секцию в зависимости от даты
                 section.style.display = (section.dataset.date === dateStr) ? 'block' : 'none';
             });
         }
 
+        // Показать все задачи
         function showAll() {
             allSections.forEach(section => section.style.display = 'block');
         }
 
+        // Слушатель события для выбора даты
         datePicker.addEventListener('change', () => {
-            showOnlyDate(datePicker.value);
+            const selectedDate = formatDate(datePicker.value); // Преобразуем в формат DD.MM.YYYY
+            showOnlyDate(selectedDate);
         });
 
+        // Слушатель события для кнопки "Задачи на сегодня"
         todayButton.addEventListener('click', () => {
-            const today = new Date().toISOString().split('T')[0];
+            const today = new Date().toISOString().split('T')[0]; // Получаем сегодняшнюю дату в формате YYYY-MM-DD
             datePicker.value = today;
-            showOnlyDate(today);
+            const formattedToday = formatDate(today); // Преобразуем в формат DD.MM.YYYY
+            showOnlyDate(formattedToday);
         });
 
+        // Слушатель события для кнопки "Показать все"
         resetButton.addEventListener('click', () => {
             datePicker.value = '';
             showAll();
@@ -141,3 +163,5 @@
     });
 </script>
 {% endblock %}
+
+
