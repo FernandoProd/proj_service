@@ -117,45 +117,45 @@
         const datePicker = document.getElementById('datePicker');
         const todayButton = document.getElementById('todayButton');
         const resetButton = document.getElementById('resetButton');
-        const allSections = document.querySelectorAll('.schedule-day'); // секции по дням
+        const allSections = document.querySelectorAll('.schedule-day');  //Cекции по дням
 
-        // Функция для преобразования даты в формат DD.MM.YYYY
+         //Функция для преобразования даты в формат DD.MM.YYYY
         function formatDate(dateStr) {
             const date = new Date(dateStr);
             const day = String(date.getDate()).padStart(2, '0');
-            const month = String(date.getMonth() + 1).padStart(2, '0'); // Месяц начинается с 0
+            const month = String(date.getMonth() + 1).padStart(2, '0'); //Месяц начинается с 0
             const year = date.getFullYear();
             return `${day}.${month}.${year}`;
         }
 
-        // Показать только задачи на выбранный день
+        //Показать только задачи на выбранный день
         function showOnlyDate(dateStr) {
             allSections.forEach(section => {
-                // Скрыть или показать секцию в зависимости от даты
+                //Скрыть или показать секцию в зависимости от даты
                 section.style.display = (section.dataset.date === dateStr) ? 'block' : 'none';
             });
         }
 
-        // Показать все задачи
+        //Показать все задачи
         function showAll() {
             allSections.forEach(section => section.style.display = 'block');
         }
 
-        // Слушатель события для выбора даты
+        //Слушатель события для выбора даты
         datePicker.addEventListener('change', () => {
-            const selectedDate = formatDate(datePicker.value); // Преобразуем в формат DD.MM.YYYY
+            const selectedDate = formatDate(datePicker.value); //Преобразуем в формат DD.MM.YYYY
             showOnlyDate(selectedDate);
         });
 
-        // Слушатель события для кнопки "Задачи на сегодня"
+        //Слушатель события для "Задачи на сегодня"
         todayButton.addEventListener('click', () => {
-            const today = new Date().toISOString().split('T')[0]; // Получаем сегодняшнюю дату в формате YYYY-MM-DD
+            const today = new Date().toISOString().split('T')[0]; //Получаем сегодняшнюю дату в формате YYYY-MM-DD
             datePicker.value = today;
             const formattedToday = formatDate(today); // Преобразуем в формат DD.MM.YYYY
             showOnlyDate(formattedToday);
         });
 
-        // Слушатель события для кнопки "Показать все"
+        //Слушатель события для "Показать все"
         resetButton.addEventListener('click', () => {
             datePicker.value = '';
             showAll();

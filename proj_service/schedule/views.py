@@ -13,13 +13,13 @@ def schedule_home(request):
     schedules = Schedule.objects.select_related('machine', 'order_detail', 'order_detail__order', 'order_detail__detail') \
         .order_by('start_time')
 
-    # Группируем по дате → по станку
+    #Привязка к дате и станкам
     grouped_schedule = defaultdict(lambda: defaultdict(list))
     for s in schedules:
         day = localdate(s.start_time)
         grouped_schedule[day.strftime('%d.%m.%Y')][s.machine.m_name].append(s)  # Форматируем дату
 
-    # Преобразуем defaultdict в обычный dict
+    #Преобразование defaultdict в обычный словарь, так как ничего не отображалось на странице
     grouped_schedule = {
         str(day): {machine_name: list(schedules) for machine_name, schedules in machines.items()}
         for day, machines in grouped_schedule.items()
@@ -28,8 +28,8 @@ def schedule_home(request):
     return render(request, 'schedule/schedule_view.html', {'grouped_schedule': grouped_schedule})
 
 
-@csrf_protect
-def refresh_schedules(request):
+@csrf_protect             #Защита, чтобы не выполнялись лишние действия
+def refresh_schedules(request):           #Кнопка обновления плана
     if request.method == 'POST':
         schedule_production()
         messages.success(request, 'Планы успешно обновлены.')
@@ -37,7 +37,7 @@ def refresh_schedules(request):
 
 
 @csrf_protect
-def mark_schedule_status(request, pk, status):
+def mark_schedule_status(request, pk, status):          #Изменение статуса
     from django.shortcuts import get_object_or_404
     from django.utils import timezone
 

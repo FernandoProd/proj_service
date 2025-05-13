@@ -1,10 +1,11 @@
 body {
     background-image: url("{% static 'main/img/background.jpg' %}");
-    background-size: cover; /* Покрытие всего экрана */
-    background-position: center center; /* Центрирование фона */
-    background-attachment: fixed; /* Фиксированное положение фона */
-    color: #ffffff; /* Цвет текста, чтобы он был виден на фоне */
+    background-size: cover;     /* НА ВЕСЬ ЭКРАН */
+    background-position: center center;             /*ЦЕНТРИРОВАНИЕ */
+    background-attachment: fixed;         /* Фиксированное положение фона*/
+    color: #ffffff;
 }
+
 
 aside {
     float: left;

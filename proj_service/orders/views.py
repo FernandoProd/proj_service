@@ -21,11 +21,11 @@ def create_order(request):
     if request.method == 'POST':
         formset = OrderDetailFormSet(request.POST)
         if formset.is_valid():
-            # Создаем заказ
+            #Создается заказ
             order_number = request.POST.get('order_number')
             order = Order.objects.create(order_number=order_number)
 
-            # Сохраняем детали
+            #Сохраняем детали
             for form in formset:
                 if form.cleaned_data:
                     detail = form.cleaned_data['detail']

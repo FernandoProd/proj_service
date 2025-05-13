@@ -14,7 +14,6 @@ class Schedule(models.Model):
     order_detail = models.ForeignKey(OrderDetail, on_delete=models.CASCADE)
     start_time = models.DateTimeField('Плановое начало')
     end_time = models.DateTimeField('Плановое окончание')
-
     actual_start_time = models.DateTimeField('Фактическое начало', null=True, blank=True)
     actual_end_time = models.DateTimeField('Фактическое окончание', null=True, blank=True)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='waiting')
