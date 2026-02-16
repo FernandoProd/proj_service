@@ -1,0 +1,76 @@
+.order-create-form {
+    background-color: rgba(40, 48, 39, 0.5);   /* прозрачный зелёно-тёмный фон */
+    color: #ffffff;                            /* белый текст */
+    border-radius: 10px;                       /* скруглённые углы */
+    padding: 20px;                             /* внутренние отступы */
+    width: 1280px;
+    max-width: 1280px;                         /* ограничение по ширине */
+    margin: 20px auto;                         /* центрирование */
+    text-align: left;                          /* текст по левому краю */
+    box-shadow: 0 0 10px rgb(33, 73, 45);     /* мягкая тень */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* полупрозрачная рамка */
+}
+
+.order-create-form h2,
+.order-create-form h3 {
+    color: #aad576;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.order-create-form .form-group {
+    margin-bottom: 20px;
+}
+
+.order-create-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 1.1em;
+}
+
+.order-create-form input[type="text"],
+.order-create-form input[type="number"],
+.order-create-form select,
+.order-create-form textarea {
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid #84a56c;
+    background-color: rgba(104, 112, 107, 0.7);
+    color: #e0f2af;
+    font-size: 1em;
+    transition: border-color 0.3s ease;
+}
+
+.order-create-form input[type="text"]:focus,
+.order-create-form input[type="number"]:focus,
+.order-create-form select:focus,
+.order-create-form textarea:focus {
+    border-color: #aad576;
+    outline: none;
+}
+
+.order-create-form .form-row {
+    margin-bottom: 15px;
+}
+
+.order-create-form .btn-submit {
+    display: block;
+    width: 100%;
+    padding: 14px 0;
+    background-color: #799554;
+    border: none;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1.2em;
+    color: #ffffff;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(113, 142, 119, 0.5);
+    transition: background-color 0.3s ease;
+}
+
+.order-create-form .btn-submit:hover {
+    background-color: #b0c66e;
+    color: #1b3300;
+}

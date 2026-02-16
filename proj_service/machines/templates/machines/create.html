@@ -3,7 +3,7 @@
 {% block title %}Форма по занесению станка в базу{% endblock %}
 
 {% block content %}
-    <div class="features">
+    <div class="features machine-form">
         <h1>Форма по занесению станка в базу</h1>
         <form method = "post">
             {% csrf_token %}  <!--Без этой херни не заработает отправка в БД-->

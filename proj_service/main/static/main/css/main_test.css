@@ -1,0 +1,282 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    color: #fff;
+    min-height: 100vh;
+    margin: 0;
+    background: url('/static/main/img/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.wrapper {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(26, 14, 14) 100%);
+    width: 100%;
+}
+
+
+.container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+
+
+header {
+    padding: 20px 0;
+}
+
+header .logo {
+    text-transform: uppercase;
+    font-size: 29px;
+    font-weight: 800;
+}
+
+header nav {
+    float: right;
+    width: 50%;
+    padding: 8px 0;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+header nav ul li {
+    display: inline-block;
+    text-decoration: none;
+}
+
+header nav ul li a {
+    color: #fff;
+}
+
+header nav ul li:not(.active):not(.btn) a:hover {
+    border-bottom: 5px solid #ffb503;
+}
+
+header nav ul li.btn a {
+    background: transparent;
+    padding: 9px 17px;
+    border-radius: 30px;
+    border: 2px solid #ffffff;
+    color: #f1f0ee;
+    text-decoration: none;
+    transition: all 500ms ease;
+}
+
+header nav ul li.btn {
+    margin-top: -5px; /* приподнимает кнопку на 2 пикселя */
+}
+
+header nav ul li.btn a:hover {
+    background: #121212;
+    color: #ffb503;
+    border: 2px solid #ffb503;
+}
+
+main {
+    width: 100%;
+    min-height: calc(100vh - 100px); /* высота окна минус шапка */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 60px 20px;
+}
+
+main .features {
+    color: #FFF;
+    text-align: center;
+    width: 75%;
+    max-width: 1000px;
+}
+
+main .features h1 {
+    font-size: 50px;
+}
+
+main .features p {
+    max-width: 400px;
+    margin: 20px auto;
+}
+
+.container.trending {
+    position: absolute;     /* Позволяет передвигать по экрану */
+    top: 195px;             /* Смещаем вниз */
+    right: 220px;            /* Смещаем от правого края */
+
+    display: flex;
+    justify-content: flex-end;
+    padding: 40px 60px;
+    z-index: 10;            /* Поднимаем выше других блоков, если нужно */
+}
+
+.container.trending .content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 300px; /* ширина по которой выравниваются все блоки */
+    transform: scale(1.3); /* Увеличить на 20% */
+    transform-origin: top right; /* точка масштабирования — верхний правый угол */
+}
+
+.container.trending .top img {
+    width: 100%;     /* занимает всю ширину .content */
+    height: auto;
+    object-fit: contain;
+}
+
+.bottom-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;    /* чтобы растянуть на ширину верхнего блока */
+    margin-top: 10px;
+}
+
+.bottom-row .block {
+    width: 48%;     /* две картинки занимают почти всю ширину */
+}
+
+
+
+.bottom-row .block img {
+    height: 144px;         /* или любое фиксированное значение */
+    width: auto;           /* сохраняем пропорции */
+    object-fit: contain;
+}
+
+.container.trending a img {
+    transition: transform 0.2s ease;
+    cursor: pointer;
+    display: block;
+}
+
+/* При наведении — немного увеличивается */
+.container.trending a:hover img {
+    transform: scale(1.05);
+}
+
+/* При нажатии — немного уменьшается */
+.container.trending a:active img {
+    transform: scale(0.95);
+}
+
+.side-by-side {
+    display: flex;
+    justify-content: space-between; /* пространство между блоками */
+    align-items: flex-start;
+    position: absolute; /* если нужно позиционировать точно */
+    top: 190px;
+    left: 50px;
+    right: 50px;
+    width: calc(100% - 100px); /* или фиксированная ширина */
+    z-index: 10;
+}
+
+.logo {
+    color: #ffb503 !important;
+}
+
+.news {
+    position: absolute;
+    top: 100px;         /* выравнивай по вертикали как .trending */
+    left: 230px;        /* сместить от левого края */
+    padding: 40px 60px;
+    z-index: 10;
+    transform: scale(1);             /* тот же масштаб */
+    transform-origin: top left;        /* масштабируется от верхнего левого угла */
+}
+
+.news img {
+    width: 30%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
+
+main .features h1 {font-size: 50px;}
+main .features p {max-width: 400px; margin: 20px auto}
+
+.machine-block {
+    background-color: rgba(40, 48, 39, 0.3);  /* прозрачный зеленый фон */
+    color: #ffffff;                             /* цвет текста белый */
+    border-radius: 10px;                     /* скругленные углы */
+    padding: 20px;                           /* внутренние отступы */
+    margin: 20px auto;                       /* сверху/снизу 20px, слева/справа авто — центрирование */
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150%;                             /* ширина 80% от родителя */
+    max-width: 1280px;                      /* максимум 1400px */
+    text-align: left;                       /* выравнивание текста по левому краю */
+    box-shadow: 0 0 10px rgb(33, 73, 45);   /* тень вокруг блока */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* полупрозрачная рамка */
+}
+
+.machine-form {
+    background-color: rgba(40, 48, 39, 0.5);  /* прозрачный зеленый фон */
+    color: #ffffff;                             /* цвет текста белый */
+    border-radius: 10px;                     /* скругленные углы */
+    padding: 20px;                           /* внутренние отступы */
+    margin: 20px auto;                       /* сверху/снизу 20px, слева/справа авто — центрирование */
+    max-width: 1280px;                      /* максимум 1400px */
+    text-align: left;                       /* выравнивание текста по левому краю */
+    box-shadow: 0 0 10px rgb(33, 73, 45);   /* тень вокруг блока */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* полупрозрачная рамка */
+}
+
+.custom-button-wrapper {
+    text-align: center; /* Центрирует кнопку */
+    margin-top: 20px;
+}
+
+.custom-button {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: rgba(82, 161, 111, 0.8);
+    color: #fff;
+    border: 1px solid #3a734f;
+    border-radius: 10px;
+    font-size: 18px;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(30, 72, 87, 0.2);
+    transition: all 0.3s ease;
+}
+
+.custom-button:hover {
+    background-color: #5ab376;
+    border-color: #4d9866;
+    box-shadow: 0 6px 16px rgb(149, 241, 182, 0.2);
+    transform: translateY(-2px);
+    color: #ffffff;
+}
+
+.custom-button:active {
+    transform: translateY(1px);
+    box-shadow: 0 3px 8px rgba(228, 9, 9, 0.2);
+}
+
+.plan-title {
+    background-color: rgba(40, 48, 39, 0.5); /* прозрачный тёмно-зелёный фон */
+    margin-top: -100px;
+    color: #ffffff;                         /* белый текст */
+    padding: 5px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 0 10px rgb(33, 73, 45);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 30px;
+}
+
+

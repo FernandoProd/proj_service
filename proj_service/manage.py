@@ -22,3 +22,6 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+# Run >> python manage.py runserver
+# /admin login: admin; password: 0000

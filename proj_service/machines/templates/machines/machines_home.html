@@ -4,12 +4,14 @@
 
 {% block content %}
     <div class="features">
-        <h1>ТУТ БУДУТ ГОВОРИТЬ О СТАНКАХ</h1>
-        <p>Мы являемся одной из крупнейших компаний по переработке куриного помета в РФ и странах СНГ!</p>
-        <a href="{% url 'home' %}" ><button class="btn btn-danger">На страницу: ГЛАВНАЯ</button></a>
-        {% if machines %}
+        <div class="custom-button-wrapper">
+            <a href="{% url 'create' %}" class="custom-button">
+                <i class="fas fa-plus-circle"></i> Добавить запись
+            </a>
+        </div>
+            {% if machines %}
             {% for el in machines %}
-                <div class="alert alert-warning">
+                <div class="machine-block">
                     <h3>{{ el.m_name }}</h3>
                     <p>{{ el.full_text }}</p>
                     <a href="{% url 'machine-detail' el.id %}" class="btn btn-warning">Посмотреть подробнее</a>
@@ -19,5 +21,5 @@
             <p>У вас нет записей!</p>
         {% endif %}
     </div>
-{% include 'main/test.html' %}
+<!-- {% include 'main/test.html' %} -->
 {% endblock %}

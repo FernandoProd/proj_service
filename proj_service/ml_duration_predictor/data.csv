@@ -1,0 +1,6 @@
+prep_time,piece_time,length,width,height,material,machine_id,actual_duration_minutes
+20,5,100,50,10,steel,1,45
+30,7,120,60,15,aluminum,2,55
+15,4,90,40,12,steel,1,40
+25,6,110,55,13,aluminum,2,50
+22,5,95,48,11,steel,1,43

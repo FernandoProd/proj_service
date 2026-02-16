@@ -17,7 +17,7 @@ def schedule_production():
     for machine in Machine.objects.all():          #Создание индивидуального расписания под каждый станок
         current_time = timezone.now()
 
-        #Отбир подходящих деталей под конкретный станок
+        #Отбор подходящих деталей под конкретный станок
         compatible_orders = [od for od in order_details if machine in od.detail.machines.all()]
 
         #Группировка по detail.id, чтобы их делать подряд и не учитывать время на подготовку повторно

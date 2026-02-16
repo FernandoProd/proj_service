@@ -3,7 +3,7 @@ from machines.models import *
 
 def index(request):
     data = {
-        'title': 'ГЛАВНАЯ СТРАНИЦА',
+        'title': 'SMART INDUSTRY',
         'values': ['Some', 'hello', 'world'],
         'obj': {
             'machine': 'Hyundai',

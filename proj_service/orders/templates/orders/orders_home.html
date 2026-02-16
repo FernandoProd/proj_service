@@ -3,9 +3,15 @@
 {% block title %}Список заявок{% endblock %}
 
 {% block content %}
-  <div class="table-wrapper">
+  <div class="features machine-form">
     <h2>Список заявок</h2>
-    <a href="{% url 'create_order' %}"><li><button class="btn btn-info"><i class="fas fa-plus-circle"></i>Добавить запись</button></li></a>
+    <div class="custom-button-wrapper">
+      <a href="{% url 'create_order' %}" class="custom-button">
+        <i class="fas fa-plus-circle"></i> Добавить запись
+      </a>
+    </div>
+    <h1></h1>
+    <h1></h1>
     <table class="order-table">
       <thead>
         <tr>

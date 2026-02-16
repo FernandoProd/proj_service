@@ -65,7 +65,7 @@ aside ul li:hover, aside ul a, u:hover {
 
 main .features {
     float: left;
-    color: #FFF;
+    color: #ffffff;
     margin-top: 100px;
     text-align: center;
     width: 75%;
@@ -74,16 +74,52 @@ main .features {
 main .features h1 {font-size: 50px;}
 main .features p {max-width: 400px; margin: 20px auto}
 
-.alert-warning {
-    float: left;
-    clear: both;
+.machine-block {
+    background-color: rgba(177, 37, 37, 0.6);
+    color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px auto;
     width: 400px;
-    margin: 20px 34%;
     text-align: left;
+    box-shadow: 0 0 10px rgba(152, 61, 61, 0.5);
+    border: 1px solid rgba(255,255,255,0.2); /* для отладки */
 }
+
 
 form {
     margin-left: 32%;
     width: 500px;
     margin-top: 50px;
 }
+
+
+
+.card {
+    background-color: rgba(195, 241, 221, 0.25);
+}
+
+.carousel-inner img {
+    height: 400px;
+    object-fit: cover;
+}
+
+.my-carousel {
+  max-width: 1900px;      /* Максимальная ширина */
+  margin: 0 auto;        /* Центрирование по горизонтали */
+}
+
+.my-carousel .carousel-inner img {
+  height: 400px;         /* Желаемая высота изображений */
+  object-fit: cover;     /* Картинка обрезается по контейнеру */
+  border-radius: 10px;   /* Закруглённые углы (необязательно) */
+}
+
+
+.custom-title {
+    font-size: 150px;
+    font-weight: 1000;
+    color: #ffffff;
+
+}
+

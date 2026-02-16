@@ -1,22 +1,29 @@
 {% extends 'main/layout.html' %}
+{% load static %}
 
 {% block title %}Заявка {{ order.order_number }}{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'orders/css/order_detail.css' %}">
+{% endblock %}
+
 {% block content %}
-  <h2>Заявка: {{ order.order_number }}</h2>
-  <p>Дата создания: {{ order.created_at }}</p>
-  <p>Статус: {{ order.status }}</p>
-  <p>Клиент: {{ order.customer_name }}</p>
-  <p>Приоритет: {{ order.priority }}</p>
+  <div class="order-details-container">
+    <h2>Заявка: {{ order.order_number }}</h2>
+    <p>Дата создания: {{ order.created_at }}</p>
+    <p>Статус: {{ order.status }}</p>
+    <p>Клиент: {{ order.customer_name }}</p>
+    <p>Приоритет: {{ order.priority }}</p>
 
-  <h3>Список деталей:</h3>
-  <ul>
-    {% for item in order_details %}
-      <li>{{ item.detail.name }} — Кол-во: {{ item.quantity }}</li>
-    {% empty %}
-      <li>Нет деталей в заявке.</li>
-    {% endfor %}
-  </ul>
+    <h3>Список деталей:</h3>
+    <ul>
+      {% for item in order_details %}
+        <li>{{ item.detail.name }} — Кол-во: {{ item.quantity }}</li>
+      {% empty %}
+        <li>Нет деталей в заявке.</li>
+      {% endfor %}
+    </ul>
 
-  <a href="{% url 'orders_home' %}">← Назад к списку заявок</a>
+    <a href="{% url 'orders_home' %}" class="back-link">Назад к списку заявок</a>
+  </div>
 {% endblock %}
