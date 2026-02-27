@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      # Монтируем файл базы данных, чтобы сохранять данные между перезапусками
+      - sqlite_data:/app/db.sqlite3
+      # add details from detail.csv
+      - ./detail.csv:/app/detail.csv
+    environment:
+      - DJANGO_SECRET_KEY=your-secret-key-here  # you must change this key to yours
+      - DJANGO_DEBUG=True                       # only for developing
+    # for add starting data you can add command
+    command: sh -c "python manage.py migrate && python add_details.py && python manage.py runserver 0.0.0.0:8000"
+
+volumes:
+  sqlite_data:
