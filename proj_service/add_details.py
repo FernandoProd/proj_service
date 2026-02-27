@@ -38,17 +38,17 @@ def load_details():
                     machine, created = Machine.objects.get_or_create(name=machine_name.strip())
                     detail.machines.add(machine)
 
-                print(f"✅ Добавлено: {row['number']} - {row['name']}")
+                print(f"Добавлено: {row['number']} - {row['name']}")
 
             except IntegrityError:
-                print(f"⚠️ Пропущено (дубликат): {row['number']}")
+                print(f"Пропущено (дубликат): {row['number']}")
             except Exception as e:
                 print(f"❌ Ошибка в строке {index + 2}: {str(e)}")
 
     except FileNotFoundError:
-        print("❌ Файл 'detail.csv' не найден!")
+        print("Файл 'detail.csv' не найден!")
     except Exception as e:
-        print(f"❌ Критическая ошибка: {str(e)}")
+        print(f"Критическая ошибка: {str(e)}")
 
 
 if __name__ == '__main__':

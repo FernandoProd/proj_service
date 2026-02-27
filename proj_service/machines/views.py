@@ -29,11 +29,11 @@ class MachineDeleteView(DeleteView):
 
 
 def create(request):
-    if request.method == 'POST':                           #Если мы нажмем кнопу добавить, то выполнится данная проверка
-        form = MachineForm(request.POST)                   #Здесь мы получаем все данные, которые ввел пользователь
-        if form.is_valid():                                #Проверяет корректно ли заполнены данные
-            form.save()                                    #Сохраняем новую запись в базу данных
-            return redirect('machines_home')               #Если сохранились данные, то автоматически переадресуется клиент на гл. страницу
+    if request.method == 'POST':
+        form = MachineForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('machines_home')
 
     form = MachineForm()
 

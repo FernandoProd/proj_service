@@ -6,14 +6,14 @@ import os
 
 
 
-# Пути к сохранённым файлам
+# Paths to saved files
 BASE_DIR = os.path.dirname(__file__)
 MODEL_PATH = os.path.join(BASE_DIR, 'duration_model.h5')
 SCALER_PATH = os.path.join(BASE_DIR, 'scaler.pkl')
 MATERIAL_ENCODER_PATH = os.path.join(BASE_DIR, 'material_encoder.pkl')
 MACHINE_ENCODER_PATH = os.path.join(BASE_DIR, 'machine_encoder.pkl')
 
-# Загрузка модели и препроцессоров
+# loading model and preprocessors
 model = load_model(MODEL_PATH, custom_objects={'mse': 'mean_squared_error'})
 scaler = joblib.load(SCALER_PATH)
 le_material = joblib.load(MATERIAL_ENCODER_PATH)
@@ -38,7 +38,7 @@ def predict_duration(detail, machine):
         print(f"Ошибка кодирования: {e}")
         return None
 
-    # Формируем вектор признаков
+    # creating vector signs
     features = np.array([[
         detail.prep_time,
         detail.piece_time,

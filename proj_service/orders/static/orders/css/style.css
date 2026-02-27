@@ -49,7 +49,7 @@ h2 {
   width: 1280px;
   margin: 0 auto;
   margin-left: 330px;
-  padding: 20px; /* регулирование внутренних отступов */
+  padding: 20px;
   background-color: rgb(208, 248, 220, 0.35);
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);

@@ -6,7 +6,7 @@
     <div class="features machine-form">
         <h1>Удаление станка из базы</h1>
         <form method = "post">
-            {% csrf_token %}  <!--Без этой херни не заработает отправка в БД-->
+            {% csrf_token %}
 
             <button class="btn btn-danger" type="submit">Удалить статью</button>
         </form>

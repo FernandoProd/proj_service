@@ -1,6 +1,6 @@
 from predictor import predict_duration
 
-# Заглушки объектов (имитируем Django-модели)
+# imitating django-models
 class DummyDetail:
     prep_time = 12
     piece_time = 3
@@ -10,7 +10,7 @@ class DummyDetail:
     material = "steel"
 
 class DummyMachine:
-    id = 1  # ID машины, которая была в обучающей выборке
+    id = 1  # ID machine that was in learned model
 
 detail = DummyDetail()
 machine = DummyMachine()

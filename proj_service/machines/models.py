@@ -13,7 +13,7 @@ class Machine(models.Model):
     def get_absolute_url(self):
         return f'/machines/{self.id}'
 
-    class Meta:   #Этот класс существуюет для переименования модели в админке
+    class Meta:
         verbose_name = 'Станок'
         verbose_name_plural = 'Станки'
 

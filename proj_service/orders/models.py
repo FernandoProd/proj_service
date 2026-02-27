@@ -7,9 +7,9 @@ class Detail(models.Model):
     name = models.CharField('Наименование', max_length=100)
     number = models.CharField('Номер детали', max_length=50, unique=True)
     material = models.CharField('Материал', max_length=100)
-    prep_time = models.IntegerField('Время подготовительное (мин)')   #validators=[MaxValueValidator(10 000)]  По идее могут быть ошибки от int и ошибки, если число будет больше 10^4
+    prep_time = models.IntegerField('Время подготовительное (мин)')
     piece_time = models.IntegerField('Время штучное (мин)')
-    length = models.FloatField('Длина (мм)', )    #Тут было б ы правильно обсуждать размеры заготовки, а не самой детали, тк все эти данные из АСУПр в теории идут в производство
+    length = models.FloatField('Длина (мм)', )
     width = models.FloatField('Ширина (мм)', )
     height = models.FloatField('Высота (мм)', )
     machines = models.ManyToManyField(Machine, verbose_name='Подходящие станки')
@@ -17,7 +17,7 @@ class Detail(models.Model):
     def __str__(self):
         return f"{self.number} - {self.name}"
 
-    class Meta:    #Этот класс существуюет для переименования модели в админке
+    class Meta:
         verbose_name = 'Деталь'
         verbose_name_plural = 'Детали'
 
@@ -26,7 +26,7 @@ class Order(models.Model):
     customer = models.CharField('Клиент', max_length=100)
     order_number = models.CharField('Номер заявки', max_length=100, unique=True)
     created_at = models.DateTimeField('Дата создания', auto_now_add=True)
-    priority = models.IntegerField('Приоритет', default=1)                     #чем меньше число, тем выше его приоритет
+    priority = models.IntegerField('Приоритет', default=1)
     customer_name = models.CharField('Наименование прибора', max_length=100)
     deadline = models.DateField('Дедлайн', default=timezone.now() + timedelta(days=7))
     status = models.CharField('Статус', max_length=100)
@@ -34,7 +34,7 @@ class Order(models.Model):
     def __str__(self):
         return f"Заявка №{self.order_number} от {self.customer} (до {self.deadline})"
 
-    class Meta:    #Этот класс существуюет для переименования модели в админке
+    class Meta:
         verbose_name = 'Заявка'
         verbose_name_plural = 'Заявки'
 

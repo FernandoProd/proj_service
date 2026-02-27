@@ -1,8 +1,8 @@
 body {
     background-image: url("{% static 'main/img/background.jpg' %}");
-    background-size: cover;     /* НА ВЕСЬ ЭКРАН */
-    background-position: center center;             /*ЦЕНТРИРОВАНИЕ */
-    background-attachment: fixed;         /* Фиксированное положение фона*/
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
     color: #ffffff;
 }
 
@@ -15,19 +15,19 @@ aside {
     color: #fff;
     position: relative;
     z-index: 1;
-    /* Убрана стандартная граница */
+
 }
 
 aside::before {
     content: "";
-    position: fixed; /* фиксируем к экрану */
+    position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
-    width: calc(13% + 2.5% * 2); /* ширина aside + padding слева и справа */
-    background-color: rgb(208, 248, 220, 0.25); /* прозрачный фон */
-    border-right: 2px solid rgba(209, 186, 186, 0.35); /* прозрачная граница */
-    z-index: -1; /* под aside */
+    width: calc(13% + 2.5% * 2);
+    background-color: rgb(208, 248, 220, 0.25);
+    border-right: 2px solid rgba(209, 186, 186, 0.35);
+    z-index: -1;
 }
 
 
@@ -83,7 +83,7 @@ main .features p {max-width: 400px; margin: 20px auto}
     width: 400px;
     text-align: left;
     box-shadow: 0 0 10px rgba(152, 61, 61, 0.5);
-    border: 1px solid rgba(255,255,255,0.2); /* для отладки */
+    border: 1px solid rgba(255,255,255,0.2);
 }
 
 
@@ -105,14 +105,14 @@ form {
 }
 
 .my-carousel {
-  max-width: 1900px;      /* Максимальная ширина */
-  margin: 0 auto;        /* Центрирование по горизонтали */
+  max-width: 1900px;
+  margin: 0 auto;
 }
 
 .my-carousel .carousel-inner img {
-  height: 400px;         /* Желаемая высота изображений */
-  object-fit: cover;     /* Картинка обрезается по контейнеру */
-  border-radius: 10px;   /* Закруглённые углы (необязательно) */
+  height: 400px;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
 
