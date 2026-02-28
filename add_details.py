@@ -8,7 +8,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'proj_service.settings')
 django.setup()
 
 from orders.models import Detail
-from machines import Machine
+from machines.models import Machine
 
 
 def load_details():
