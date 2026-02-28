@@ -60,7 +60,7 @@
     └── *.pkl               # Encoders and scaler
  ```
 
- # 🔧 ML Model Usage
+## 🔧 ML Model Usage
   1. Extract historical data – Run extract_data.py to create data.csv from actual schedule data.
   2. Train the model – Execute train_model.py to update duration_model.h5.
   3. Predict – Use predict_duration(detail, machine) from predictor.py in your scheduling logic.
